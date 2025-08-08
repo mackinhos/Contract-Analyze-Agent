@@ -5,7 +5,7 @@ load_dotenv()
 
 class Config:
     # ModelScope API配置
-    MODELSCOPE_API_KEY = os.getenv('MODELSCOPE_API_KEY', 'your_api_key_here')
+    MODELSCOPE_API_KEY = 'your-modelscope-api-key'
     MODELSCOPE_BASE_URL = 'https://api-inference.modelscope.cn/v1'
     MODEL_NAME = 'ZhipuAI/GLM-4.5'
     
