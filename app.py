@@ -56,9 +56,22 @@ st.markdown("""
 # 初始化分析器
 @st.cache_resource
 def init_analyzer():
-    return ContractAnalyzer()
+    try:
+        analyzer = ContractAnalyzer()
+        # 测试连接
+        if not analyzer.test_connection():
+            st.error("API连接失败，请检查配置")
+            return None
+        return analyzer
+    except Exception as e:
+        st.error(f"初始化失败: {str(e)}")
+        return None
 
 analyzer = init_analyzer()
+
+# 如果分析器初始化失败，显示错误信息并停止执行
+if analyzer is None:
+    st.stop()
 
 # 文件处理函数
 def read_pdf(file):
